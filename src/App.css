@@ -1,3 +1,7 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 * {
   margin: 0;
   padding: 0;
@@ -15,6 +19,9 @@
 
   color: #111827;
   background: #f5f7fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -33,18 +40,25 @@ button {
   cursor: pointer;
 }
 
-/* =========================
-   APP
-========================= */
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* =========================================================
+   APP LAYOUT
+========================================================= */
 
 .app {
   min-height: 100vh;
   display: flex;
 }
 
-/* =========================
+/* =========================================================
    SIDEBAR
-========================= */
+========================================================= */
 
 .sidebar {
   width: 250px;
@@ -57,6 +71,7 @@ button {
 
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 }
 
 .logo {
@@ -95,9 +110,18 @@ button {
   background: transparent;
 
   font-size: 14px;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.nav-item:hover,
+.nav-item:hover {
+  background: #1f2937;
+  color: white;
+}
+
 .nav-item.active {
   background: #1f2937;
   color: white;
@@ -106,6 +130,7 @@ button {
 .nav-icon {
   width: 20px;
   text-align: center;
+  font-size: 15px;
 }
 
 .sidebar-bottom {
@@ -124,6 +149,7 @@ button {
 }
 
 .engine-status strong {
+  display: block;
   font-size: 12px;
 }
 
@@ -137,25 +163,32 @@ button {
   width: 9px;
   height: 9px;
 
+  flex-shrink: 0;
+
   border-radius: 50%;
   background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
 }
 
-/* =========================
+/* =========================================================
    MAIN
-========================= */
+========================================================= */
 
 .main {
+  position: relative;
+
   flex: 1;
 
   max-width: 1400px;
 
-  padding: 38px 50px;
+  padding: 30px 50px;
+
+  overflow-x: hidden;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* =========================================================
+   TOPBAR
+========================================================= */
 
 .topbar {
   display: flex;
@@ -165,10 +198,13 @@ button {
 
 .small-text {
   color: #6b7280;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.09em;
   text-transform: uppercase;
+
   margin-bottom: 7px;
 }
 
@@ -176,12 +212,19 @@ button {
 .page-heading h1 {
   font-size: 32px;
   line-height: 1.1;
+
+  color: #111827;
+  font-weight: 800;
 }
 
 .subtitle {
   color: #6b7280;
+
   margin-top: 10px;
   margin-bottom: 30px;
+
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .profile-button {
@@ -189,6 +232,8 @@ button {
   height: 44px;
 
   border-radius: 50%;
+  border: none;
+
   background: #2563eb;
   color: white;
 
@@ -200,15 +245,35 @@ button {
   font-weight: 700;
 }
 
-/* =========================
+/* =========================================================
+   CONTENT SECTIONS
+========================================================= */
+
+.content-section {
+  margin-bottom: 38px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 15px;
+}
+
+.section-header h2 {
+  font-size: 20px;
+  color: #111827;
+  font-weight: 750;
+}
+
+/* =========================================================
    STATS
-========================= */
+========================================================= */
 
 .stats-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 
   gap: 16px;
 
@@ -222,6 +287,17 @@ button {
   border-radius: 15px;
 
   padding: 22px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(15, 23, 42, 0.06);
 }
 
 .stat-card p {
@@ -231,28 +307,16 @@ button {
 
 .stat-card h2 {
   margin-top: 9px;
+
   font-size: 30px;
+  line-height: 1;
+
+  color: #111827;
 }
 
-/* =========================
-   SECTIONS
-========================= */
-
-.content-section {
-  margin-bottom: 40px;
-}
-
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  margin-bottom: 15px;
-}
-
-.section-header h2 {
-  font-size: 20px;
-}
+/* =========================================================
+   AI BADGE
+========================================================= */
 
 .ai-badge {
   padding: 7px 11px;
@@ -263,12 +327,12 @@ button {
   color: #2563eb;
 
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
-/* =========================
+/* =========================================================
    PRIORITY CARD
-========================= */
+========================================================= */
 
 .priority-card {
   display: flex;
@@ -283,6 +347,9 @@ button {
   border-left: 5px solid #2563eb;
 
   border-radius: 15px;
+
+  box-shadow:
+    0 5px 18px rgba(37, 99, 235, 0.04);
 }
 
 .empty-priority {
@@ -308,12 +375,15 @@ button {
 
 .priority-info {
   flex: 1;
+  min-width: 0;
 }
 
 .recommendation-label {
   color: #2563eb;
+
   font-size: 10px;
   font-weight: 800;
+
   letter-spacing: 0.08em;
 
   margin-bottom: 6px;
@@ -321,12 +391,17 @@ button {
 
 .priority-info h3 {
   font-size: 18px;
+  color: #111827;
 }
 
 .priority-info > p {
   color: #6b7280;
+
   font-size: 13px;
+
   margin-top: 8px;
+
+  line-height: 1.5;
 }
 
 .task-details {
@@ -348,19 +423,26 @@ button {
 
 .why-box {
   margin-top: 14px;
+
   padding: 12px;
 
   background: #f8fafc;
+
+  border: 1px solid #eef2f7;
+
   border-radius: 9px;
 }
 
 .why-box strong {
   font-size: 12px;
+  color: #111827;
 }
 
 .why-box p {
   color: #6b7280;
+
   font-size: 12px;
+
   line-height: 1.5;
 
   margin-top: 4px;
@@ -378,11 +460,22 @@ button {
 
   font-size: 13px;
   font-weight: 700;
+
+  white-space: nowrap;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
 }
 
-/* =========================
+.start-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
    BUTTONS
-========================= */
+========================================================= */
 
 .add-button {
   border: none;
@@ -395,12 +488,21 @@ button {
   border-radius: 9px;
 
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 650;
+
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
 }
 
-/* =========================
+.add-button:hover {
+  background: #1f2937;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
    TASK LIST
-========================= */
+========================================================= */
 
 .task-list {
   background: white;
@@ -409,6 +511,9 @@ button {
   border-radius: 15px;
 
   overflow: hidden;
+
+  box-shadow:
+    0 3px 15px rgba(15, 23, 42, 0.02);
 }
 
 .task-row {
@@ -420,6 +525,12 @@ button {
   padding: 17px 20px;
 
   border-bottom: 1px solid #e5e7eb;
+
+  transition: background 0.15s ease;
+}
+
+.task-row:hover {
+  background: #fafbfc;
 }
 
 .task-row:last-child {
@@ -429,10 +540,16 @@ button {
 .task-row input[type="checkbox"] {
   width: 17px;
   height: 17px;
+
+  flex-shrink: 0;
+
+  accent-color: #2563eb;
 }
 
 .task-rank {
   width: 30px;
+
+  flex-shrink: 0;
 
   color: #9ca3af;
 
@@ -442,15 +559,24 @@ button {
 
 .task-name {
   flex: 1;
+  min-width: 0;
 }
 
 .task-name h3 {
+  color: #111827;
+
   font-size: 14px;
+
   margin-bottom: 4px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .task-name p {
   color: #9ca3af;
+
   font-size: 11px;
 }
 
@@ -461,6 +587,8 @@ button {
 
   font-size: 13px;
   font-weight: 800;
+
+  text-align: center;
 }
 
 .priority {
@@ -470,6 +598,8 @@ button {
 
   font-size: 10px;
   font-weight: 800;
+
+  white-space: nowrap;
 }
 
 .priority.high {
@@ -510,14 +640,19 @@ button {
   border-radius: 7px;
 
   color: #4b5563;
+
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
 }
 
 .task-actions button:hover {
   background: #e5e7eb;
+  transform: translateY(-1px);
 }
 
 .empty-state {
-  padding: 35px;
+  padding: 38px;
 
   text-align: center;
 
@@ -526,9 +661,9 @@ button {
   font-size: 14px;
 }
 
-/* =========================
+/* =========================================================
    MODAL
-========================= */
+========================================================= */
 
 .modal-overlay {
   position: fixed;
@@ -540,7 +675,11 @@ button {
   align-items: center;
   justify-content: center;
 
+  padding: 20px;
+
   background: rgba(15, 23, 42, 0.58);
+
+  backdrop-filter: blur(3px);
 }
 
 .modal {
@@ -548,6 +687,7 @@ button {
   max-width: calc(100vw - 30px);
 
   max-height: 90vh;
+
   overflow-y: auto;
 
   padding: 27px;
@@ -555,6 +695,9 @@ button {
   background: white;
 
   border-radius: 17px;
+
+  box-shadow:
+    0 30px 70px rgba(15, 23, 42, 0.2);
 }
 
 .modal-header {
@@ -576,7 +719,9 @@ button {
 
 .modal-header h2 {
   margin-top: 5px;
+
   font-size: 22px;
+  color: #111827;
 }
 
 .close-button {
@@ -584,12 +729,23 @@ button {
   height: 32px;
 
   border: none;
+
   background: #f3f4f6;
 
   border-radius: 8px;
 
   font-size: 20px;
+
   color: #6b7280;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.close-button:hover {
+  background: #e5e7eb;
+  color: #111827;
 }
 
 .modal form {
@@ -603,6 +759,8 @@ button {
 
   font-size: 12px;
   font-weight: 700;
+
+  color: #374151;
 }
 
 .modal input,
@@ -611,16 +769,23 @@ button {
 .task-toolbar select {
   width: 100%;
 
-  border: 1px solid #d1d5db;
-  border-radius: 9px;
-
   padding: 11px 12px;
 
   background: white;
 
+  border: 1px solid #d1d5db;
+
+  border-radius: 9px;
+
   outline: none;
 
   font-size: 13px;
+
+  color: #111827;
+
+  transition:
+    border 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .modal input:focus,
@@ -628,6 +793,9 @@ button {
 .task-toolbar input:focus,
 .task-toolbar select:focus {
   border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.08);
 }
 
 .submit-button {
@@ -642,11 +810,20 @@ button {
   color: white;
 
   font-weight: 700;
+
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
 }
 
-/* =========================
-   PREFERENCES
-========================= */
+.submit-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   PREFERENCES PAGE
+========================================================= */
 
 .page-heading {
   margin-bottom: 26px;
@@ -654,20 +831,23 @@ button {
 
 .page-heading > p:last-child {
   color: #6b7280;
+
   margin-top: 8px;
+
+  font-size: 14px;
 }
 
 .preferences-grid {
   display: grid;
 
-  grid-template-columns:
-    repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 
   gap: 15px;
 }
 
 .preference-card {
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
@@ -677,15 +857,29 @@ button {
   border-radius: 13px;
 
   background: white;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.preference-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(15, 23, 42, 0.05);
 }
 
 .preference-card h3 {
   font-size: 15px;
+  color: #111827;
 }
 
 .preference-card p {
   color: #9ca3af;
+
   font-size: 12px;
+
   margin-top: 4px;
 }
 
@@ -695,23 +889,29 @@ button {
   padding: 9px;
 
   border: 1px solid #d1d5db;
+
   border-radius: 8px;
 
   background: white;
+
+  outline: none;
 }
 
 .info-card {
   margin-top: 20px;
+
   padding: 22px;
 
   background: white;
 
   border: 1px solid #e5e7eb;
+
   border-radius: 13px;
 }
 
 .info-card h3 {
   font-size: 15px;
+  color: #111827;
 }
 
 .info-card > p {
@@ -720,18 +920,20 @@ button {
   margin-top: 8px;
 
   font-size: 13px;
+
   line-height: 1.6;
 }
 
 .inline-heading {
   display: flex;
+
   align-items: flex-end;
   justify-content: space-between;
 }
 
-/* =========================
-   TASK TOOLBAR
-========================= */
+/* =========================================================
+   TASK PAGE TOOLBAR
+========================================================= */
 
 .task-toolbar {
   display: grid;
@@ -743,15 +945,14 @@ button {
   margin-bottom: 18px;
 }
 
-/* =========================
-   ANALYTICS
-========================= */
+/* =========================================================
+   ANALYTICS PAGE
+========================================================= */
 
 .analytics-grid {
   display: grid;
 
-  grid-template-columns:
-    repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 
   gap: 15px;
 }
@@ -768,6 +969,7 @@ button {
 
 .analytics-card p {
   color: #6b7280;
+
   font-size: 12px;
 }
 
@@ -777,6 +979,8 @@ button {
   margin-top: 10px;
 
   font-size: 28px;
+
+  color: #111827;
 }
 
 .progress-track {
@@ -794,11 +998,17 @@ button {
 
 .progress-bar {
   height: 100%;
+
   background: #2563eb;
+
+  border-radius: 20px;
+
+  transition: width 0.3s ease;
 }
 
 .category-stat {
   display: flex;
+
   justify-content: space-between;
 
   padding: 12px 0;
@@ -812,9 +1022,439 @@ button {
   border-bottom: none;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* =========================================================
+   LOGIN PAGE
+========================================================= */
+
+.auth-page {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37, 99, 235, 0.08),
+      transparent 30%
+    ),
+    #f5f7fb;
+}
+
+.auth-card {
+  width: 430px;
+  max-width: 100%;
+
+  padding: 38px;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+.auth-logo {
+  font-size: 27px;
+
+  font-weight: 800;
+
+  color: #111827;
+}
+
+.auth-logo span {
+  color: #2563eb;
+}
+
+.auth-kicker {
+  margin-top: 35px;
+
+  color: #2563eb;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+}
+
+.auth-card h1 {
+  margin-top: 7px;
+
+  font-size: 32px;
+
+  color: #111827;
+
+  font-weight: 800;
+}
+
+.auth-description {
+  color: #6b7280;
+
+  margin-top: 10px;
+
+  line-height: 1.6;
+
+  font-size: 14px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 25px;
+}
+
+.auth-form label {
+  margin-bottom: 7px;
+  margin-top: 15px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  color: #374151;
+}
+
+.auth-form input {
+  padding: 13px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  font-size: 14px;
+
+  color: #111827;
+
+  background: white;
+}
+
+.auth-form input:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.login-button {
+  margin-top: 22px;
+
+  border: none;
+
+  padding: 13px;
+
+  border-radius: 9px;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-weight: 700;
+
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.login-button:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-1px);
+}
+
+.login-error {
+  margin-top: 12px;
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  background: #fee2e2;
+
+  border: 1px solid #fecaca;
+
+  color: #dc2626;
+
+  font-size: 12px;
+
+  line-height: 1.4;
+}
+
+.demo-credentials {
+  margin-top: 22px;
+
+  padding: 14px;
+
+  border-radius: 10px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e5e7eb;
+
+  color: #6b7280;
+
+  font-size: 12px;
+}
+
+.demo-credentials strong {
+  display: block;
+
+  color: #111827;
+
+  margin-bottom: 6px;
+}
+
+.demo-credentials p {
+  margin-top: 3px;
+}
+
+/* =========================================================
+   TUTORIAL
+========================================================= */
+
+.tutorial-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 2000;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background:
+    rgba(15, 23, 42, 0.65);
+
+  backdrop-filter: blur(4px);
+}
+
+.tutorial-dialog {
+  position: relative;
+
+  width: 480px;
+  max-width: 100%;
+
+  padding: 38px;
+
+  background: white;
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.2);
+}
+
+.tutorial-close {
+  position: absolute;
+
+  top: 15px;
+  right: 15px;
+
+  width: 34px;
+  height: 34px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #f3f4f6;
+
+  color: #6b7280;
+
+  font-size: 18px;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.tutorial-close:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.tutorial-icon {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 5px auto 20px;
+
+  border-radius: 18px;
+
+  background: #eff6ff;
+
+  font-size: 32px;
+}
+
+.tutorial-step {
+  color: #2563eb;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+}
+
+.tutorial-dialog h2 {
+  margin-top: 7px;
+
+  font-size: 25px;
+
+  color: #111827;
+}
+
+.tutorial-description {
+  margin-top: 10px;
+
+  color: #6b7280;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+.tutorial-dots {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  margin-top: 25px;
+}
+
+.tutorial-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #d1d5db;
+
+  transition:
+    width 0.2s ease,
+    background 0.2s ease;
+}
+
+.tutorial-dot.active {
+  width: 22px;
+
+  border-radius: 10px;
+
+  background: #2563eb;
+}
+
+.tutorial-actions {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 28px;
+}
+
+.skip-button {
+  border: none;
+
+  background: transparent;
+
+  color: #6b7280;
+
+  padding: 11px 15px;
+
+  font-size: 13px;
+}
+
+.skip-button:hover {
+  color: #111827;
+}
+
+.next-button {
+  border: none;
+
+  background: #2563eb;
+
+  color: white;
+
+  padding: 11px 20px;
+
+  border-radius: 9px;
+
+  font-weight: 700;
+
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.next-button:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.logout-area {
+  display: flex;
+
+  justify-content: flex-end;
+
+  margin-bottom: 15px;
+}
+
+.logout-button {
+  border: 1px solid #e5e7eb;
+
+  background: white;
+
+  color: #6b7280;
+
+  padding: 8px 13px;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.logout-button:hover {
+  background: #f3f4f6;
+
+  color: #111827;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 1000px) {
   .sidebar {
@@ -826,13 +1466,11 @@ button {
   }
 
   .stats-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .analytics-grid {
-    grid-template-columns:
-      1fr;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -854,10 +1492,13 @@ button {
 
   .sidebar-nav {
     flex-direction: row;
+
     overflow-x: auto;
   }
 
   .nav-item {
+    width: auto;
+
     white-space: nowrap;
   }
 
@@ -870,13 +1511,13 @@ button {
   }
 
   .stats-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .priority-card {
-    align-items: flex-start;
     flex-direction: column;
+
+    align-items: flex-start;
   }
 
   .priority-card .start-button {
@@ -884,13 +1525,11 @@ button {
   }
 
   .preferences-grid {
-    grid-template-columns:
-      1fr;
+    grid-template-columns: 1fr;
   }
 
   .task-toolbar {
-    grid-template-columns:
-      1fr;
+    grid-template-columns: 1fr;
   }
 
   .task-actions {
@@ -907,5 +1546,57 @@ button {
 
   .topbar h1 {
     font-size: 25px;
+  }
+
+  .section-header {
+    gap: 10px;
+  }
+
+  .section-header h2 {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 500px) {
+  .auth-card {
+    padding: 27px;
+  }
+
+  .auth-card h1 {
+    font-size: 27px;
+  }
+
+  .tutorial-dialog {
+    padding: 30px 22px;
+  }
+
+  .tutorial-dialog h2 {
+    font-size: 22px;
+  }
+
+  .stats-grid {
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 17px;
+  }
+
+  .stat-card h2 {
+    font-size: 24px;
+  }
+
+  .inline-heading {
+    align-items: flex-start;
+
+    gap: 10px;
+  }
+
+  .task-row {
+    padding: 15px;
+  }
+
+  .priority {
+    display: none;
   }
 }
